@@ -1,0 +1,9 @@
+[submodule "LipSyncing/LatentSync"]
+	path = LipSyncing/LatentSync
+	url = https://github.com/bytedance/LatentSync.git
+[submodule "LipSyncing/DINet"]
+	path = LipSyncing/DINet
+	url = https://github.com/MRzzm/DINet.git
+[submodule "LipSyncing/MuseTalk"]
+	path = LipSyncing/MuseTalk
+	url = https://github.com/TMElyralab/MuseTalk.git
