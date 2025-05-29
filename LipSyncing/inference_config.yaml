@@ -1,0 +1,219 @@
+task_0:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00553_test_mp4-id03178-9CCStXTR3OY-00025.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_004.mp4
+task_1:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00934_test_mp4-id00812-egWzySwZDK0-00292.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio4_000.mp4
+task_10:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00054_RD_Radio8_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio57_000.mp4
+task_11:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00977_WRA_BillCassidy0_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio40_000.mp4
+task_12:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00772_RD_Radio29_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_004_fp25.mp4
+task_13:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00547_RD_Radio23_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio27_000.mp4
+task_14:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00102_test_mp4-id01224-_asNEYPtJFQ-00209.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio36_000.mp4
+task_15:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00030_RD_Radio21_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_002.mp4
+task_16:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00203_RD_Radio56_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio9_000.mp4
+task_17:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00272_test_mp4-id01041-I1Ciwf_GXmo-00189.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio29_000.mp4
+task_18:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00940_test_mp4-id01106-zc1TPyolNVE-00357.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio46_000.mp4
+task_19:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00012_test_mp4-id01509-UZL8Obdt--8-00181.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_000.mp4
+task_2:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00172_test_mp4-id01437-b0pu79O8th8-00152.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio8_000.mp4
+task_20:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00474_WRA_BillCassidy0_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/WRA_LamarAlexander_000.mp4
+task_21:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00974_test_mp4-id03981-WtHDD38CbYE-00015.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio15_000.mp4
+task_22:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00032_RD_Radio16_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio11_001.mp4
+task_23:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00889_6007281422050366617_00003.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio48_000.mp4
+task_24:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00468_RD_Radio21_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio17_000.mp4
+task_25:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00104_RD_Radio34_008.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio41_000.mp4
+task_26:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00554_test_mp4-id01228-wQ0cqLka-oQ-00320.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio5_000.mp4
+task_27:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00917_WRA_PeterRoskam0_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio38_000.mp4
+task_28:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00740_RD_Radio7_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio28_000.mp4
+task_29:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00154_test_mp4-id01333-TWy3dcgetU4-00228.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/WRA_PeterKing_000.mp4
+task_3:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00232_test_mp4-id00817-1q_cQ40Jips-00030.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_007.mp4
+task_30:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00463_RD_Radio11_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio51_000.mp4
+task_31:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00332_test_mp4-id03127-RmKc_HNTw-k-00193.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio1_000.mp4
+task_32:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00068_test_mp4-id03347-FjsVnGNAwww-00075.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio23_000.mp4
+task_33:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00258_test_mp4-id07802-HJ5AK9n7HLM-00149.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio16_000.mp4
+task_34:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00336_RD_Radio54_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio20_000.mp4
+task_35:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00038_test_mp4-id01041-I1Ciwf_GXmo-00189.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio43_000.mp4
+task_36:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00173_5913481913286036512_00001.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio12_000.mp4
+task_37:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00122_test_mp4-id01041-I1Ciwf_GXmo-00189.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio11_000.mp4
+task_38:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00297_test_mp4-id07802-HJ5AK9n7HLM-00149.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio45_000.mp4
+task_39:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00416_RD_Radio7_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio14_000.mp4
+task_4:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00729_RD_Radio40_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio3_000.mp4
+task_40:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00497_RD_Radio34_005.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio52_000.mp4
+task_41:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00969_test_mp4-id00812-egWzySwZDK0-00292.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio39_000.mp4
+task_42:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00962_test_mp4-id06913-bw3yqeA79as-00101.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio30_000.mp4
+task_43:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00339_test_mp4-id02548-WftrXRxn2IM-00209.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio42_000.mp4
+task_44:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00137_WRA_PeterKing_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_001.mp4
+task_45:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00246_RD_Radio34_004.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio6_000.mp4
+task_46:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00286_RD_Radio34_006.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio59_000.mp4
+task_47:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00047_RD_Radio34_006.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio54_000.mp4
+task_48:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00726_RD_Radio47_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_009.mp4
+task_49:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00055_RD_Radio34_006.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio10_000.mp4
+task_5:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00454_RD_Radio59_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/WRA_PeterRoskam0_000.mp4
+task_50:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00165_5983191809480500226_00002.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio19_000.mp4
+task_51:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00867_RD_Radio10_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio37_000.mp4
+task_52:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00522_RD_Radio14_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio18_000.mp4
+task_53:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00008_test_mp4-id00081-xjfPXNgzW6o-00287.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/WRA_LamarAlexander0_000.mp4
+task_54:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00869_RD_Radio34_007.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio7_000.mp4
+task_55:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00075_RD_Radio30_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio47_000.mp4
+task_56:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00376_test_mp4-id02745-joZLV0SUzfE-00115.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio56_000.mp4
+task_57:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00602_RD_Radio50_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_003.mp4
+task_58:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00623_RD_Radio19_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio25_000.mp4
+task_59:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00702_RD_Radio3_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio26_000.mp4
+task_6:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00818_RD_Radio51_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_005.mp4
+task_60:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00652_test_mp4-id04862-4r-u7YAGLoA-00025.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio22_000.mp4
+task_61:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00370_test_mp4-id00017-wrB-yyERH2s-00201.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/WRA_BillCassidy0_000.mp4
+task_62:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00397_RD_Radio52_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_006.mp4
+task_63:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00344_RD_Radio57_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio21_000.mp4
+task_64:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00510_RD_Radio11_001.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio2_000.mp4
+task_65:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00896_RD_Radio29_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/WDA_MazieHirono1_000.mp4
+task_66:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00679_RD_Radio15_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio33_000.mp4
+task_67:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00753_test_mp4-id03127-RmKc_HNTw-k-00193.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio34_008.mp4
+task_68:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00649_5926122002038176664_00001.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio53_000.mp4
+task_69:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00262_test_mp4-id03127-RmKc_HNTw-k-00193.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio13_000.mp4
+task_7:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00640_6213017227476386439_00003.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio44_000.mp4
+task_70:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00456_test_mp4-id02181-bVgZuvmZPcg-00082.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio50_000.mp4
+task_71:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00847_RD_Radio22_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio49_000.mp4
+task_72:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00499_RD_Radio1_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio32_000.mp4
+task_8:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00406_RD_Radio38_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio31_000.mp4
+task_9:
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/fake_audio/00381_RD_Radio43_000.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio35_000.mp4
