@@ -10,7 +10,6 @@ np.random.seed(42)
 def main(
     src_folder: str = "/data/disk1/deepfake_data_gen/raw/HDTF-test",
     dst_folder: str = "/data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data",
-    n_samples: int = 150,
 ):
     """
     List all MP4 files in the specified folder and print their paths.

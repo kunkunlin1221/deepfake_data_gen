@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import capybara as cb
+import facekit as fk
 import numpy as np
 from fire import Fire
 from moviepy import VideoFileClip
@@ -45,7 +47,6 @@ def main(
         src_folder (str): Path to the source folder containing MP4 files.
         dst_folder (str): Path to the destination folder for saving audio files.
     """
-
     # Ensure the destination folder exists
     src_folder = Path(src_folder)
     dst_folder = Path(dst_folder)
@@ -55,6 +56,14 @@ def main(
         print(f"Destination folder {dst_folder} does not exist. Creating it.")
         # Create the destination folder if it doesn't exist
         dst_folder.mkdir(parents=True, exist_ok=True)
+
+    genders = []
+    gender_dict = {}
+    gender_txts = list(src_folder.rglob("**/gender.txt"))
+    for gender_txt in gender_txts:
+        with open(gender_txt, "r") as f:
+            genders = [line.strip().split(" ") for line in f.readlines()]
+            gender_dict.update({fname: int(gender) for fname, gender in genders})
 
     # Iterate through all files in the source folder
     mp4_files = list(src_folder.rglob("**/_real_data/*.mp4"))
@@ -67,6 +76,7 @@ def main(
     mp4_list = list(chosen_mp4.keys())
     for i in tqdm(range(n_samples), desc="Select random audio segments"):
         mp4_file = np.random.choice(mp4_list)
+        gender = "male" if gender_dict[mp4_file.name] else "female"
         audio = chosen_mp4[mp4_file]
         total_mili_seconds = len(audio)
         high = min(high_seconds, total_mili_seconds // 1000)
@@ -74,7 +84,8 @@ def main(
         start_time = np.random.randint(0, total_mili_seconds - selected_seconds * 1000)
         end_time = start_time + selected_seconds * 1000
         selected_audio = audio[start_time:end_time]
-        mp3_file = dst_folder / f"{i:05}_{mp4_file.stem}.mp3"
+        mp3_file = dst_folder / gender / f"{i:05}_{mp4_file.stem}.mp3"
+        mp3_file.parent.mkdir(parents=True, exist_ok=True)
         wav_file = mp3_file.with_suffix(".wav")
         selected_audio.export(mp3_file, format="mp3")
         selected_audio.export(wav_file, format="wav")

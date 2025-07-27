@@ -30,16 +30,28 @@ def get_docker_cmd(
 
 def main(mother_dir, fake_audio_dir):
     video_paths = list(Path(mother_dir, "_real_data_fps25").glob("*.mp4"))
-    audio_paths = list(Path(fake_audio_dir).glob("*.wav"))
-    random.shuffle(audio_paths)
+    male_audio_paths = list(Path(fake_audio_dir).rglob("**/male/*.wav"))
+    female_audio_paths = list(Path(fake_audio_dir).rglob("**/female/*.wav"))
+
+    with open(Path(mother_dir, "gender.txt"), "r") as f:
+        gender_labels = [line.strip().split(" ") for line in f.readlines()]
+        gender_labels = {k: int(v) for k, v in gender_labels}
+
+    random.shuffle(male_audio_paths)
+    random.shuffle(female_audio_paths)
 
     # Reorder audio paths
     result_folder = Path(mother_dir, "DINet")
     result_folder.mkdir(exist_ok=True)
     fails = []
 
-    for video_path, audio_path in zip(video_paths, audio_paths):
+    for video_path in video_paths:
         lmk_fpath = Path(mother_dir, "_dinet_landmark_fps25", video_path.stem + ".csv")
+        gender = gender_labels[video_path.name]
+        if gender:
+            audio_path = random.choice(male_audio_paths)
+        else:
+            audio_path = random.choice(female_audio_paths)
 
         cmd = get_docker_cmd(
             video_path=str(video_path),
@@ -51,7 +63,6 @@ def main(mother_dir, fake_audio_dir):
         print(f"Running: {video_path.name} + {audio_path.name}")
         try:
             subprocess.run(cmd, shell=True)  # <== shell=True is needed for $HOME and $(pwd)
-            breakpoint()
         except subprocess.CalledProcessError as e:
             print(f"Error processing {video_path.name} with {audio_path.name}: {e}")
             fails.append(video_path)

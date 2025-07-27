@@ -36,15 +36,28 @@ def get_docker_cmd(inference_config: str, result_dir: str) -> str:
 
 def main(mother_dir, fake_audio_dir):
     video_paths = list(Path(mother_dir, "_real_data_fps25").glob("*.mp4"))
-    audio_paths = list(Path(fake_audio_dir).glob("*.wav"))
-    random.shuffle(audio_paths)
+    male_audio_paths = list(Path(fake_audio_dir).rglob("**/male/*.wav"))
+    female_audio_paths = list(Path(fake_audio_dir).rglob("**/female/*.wav"))
+
+    with open(Path(mother_dir, "gender.txt"), "r") as f:
+        gender_labels = [line.strip().split(" ") for line in f.readlines()]
+        gender_labels = {k: int(v) for k, v in gender_labels}
+
+    random.shuffle(male_audio_paths)
+    random.shuffle(female_audio_paths)
 
     # Reorder audio paths
     result_folder = Path(mother_dir, "MuseTalk")
     result_folder.mkdir(exist_ok=True)
     fails = []
 
-    for video_path, audio_path in zip(video_paths, audio_paths):
+    for video_path in video_paths:
+        gender = gender_labels[video_path.name]
+        if gender:
+            audio_path = random.choice(male_audio_paths)
+        else:
+            audio_path = random.choice(female_audio_paths)
+
         output_path = result_folder / video_path.name
         prepare_inference_config(video_path, audio_path, "MuseTalk/inference_config.yaml")
         cmd = get_docker_cmd(

@@ -1,3 +1,3 @@
 task_0:
-  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/_fake_audio/00714_RD_Radio40_000.wav
-  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/HDTF-test/_real_data_fps25/RD_Radio3_000.mp4
+  audio_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/_fake_audio/male/00362_test_mp4-id02577-sPTvkQvLUcc-00140.wav
+  video_path: /data/disk1/deepfake_data_gen/processed/LipSyncing/LRS2/_real_data_fps25/5860401271468248377_00001.mp4

@@ -2,3 +2,4 @@ moviepy
 fire
 numpy
 pydub
+git+ssh://git@github.com/DocsaidLab/Facekit.git@v0.2.0
