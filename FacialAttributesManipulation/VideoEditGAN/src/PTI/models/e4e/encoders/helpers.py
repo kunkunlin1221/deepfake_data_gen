@@ -1,7 +1,8 @@
 from collections import namedtuple
+
 import torch
 import torch.nn.functional as F
-from torch.nn import Conv2d, BatchNorm2d, PReLU, ReLU, Sigmoid, MaxPool2d, AdaptiveAvgPool2d, Sequential, Module
+from torch.nn import AdaptiveAvgPool2d, BatchNorm2d, Conv2d, MaxPool2d, Module, PReLU, ReLU, Sequential, Sigmoid
 
 """
 ArcFace implementation from [TreB1eN](https://github.com/TreB1eN/InsightFace_Pytorch)
@@ -19,8 +20,8 @@ def l2_norm(input, axis=1):
     return output
 
 
-class Bottleneck(namedtuple('Block', ['in_channel', 'depth', 'stride'])):
-    """ A named tuple describing a ResNet block. """
+class Bottleneck(namedtuple("Block", ["in_channel", "depth", "stride"])):
+    """A named tuple describing a ResNet block."""
 
 
 def get_block(in_channel, depth, num_units, stride=2):
@@ -33,21 +34,21 @@ def get_blocks(num_layers):
             get_block(in_channel=64, depth=64, num_units=3),
             get_block(in_channel=64, depth=128, num_units=4),
             get_block(in_channel=128, depth=256, num_units=14),
-            get_block(in_channel=256, depth=512, num_units=3)
+            get_block(in_channel=256, depth=512, num_units=3),
         ]
     elif num_layers == 100:
         blocks = [
             get_block(in_channel=64, depth=64, num_units=3),
             get_block(in_channel=64, depth=128, num_units=13),
             get_block(in_channel=128, depth=256, num_units=30),
-            get_block(in_channel=256, depth=512, num_units=3)
+            get_block(in_channel=256, depth=512, num_units=3),
         ]
     elif num_layers == 152:
         blocks = [
             get_block(in_channel=64, depth=64, num_units=3),
             get_block(in_channel=64, depth=128, num_units=8),
             get_block(in_channel=128, depth=256, num_units=36),
-            get_block(in_channel=256, depth=512, num_units=3)
+            get_block(in_channel=256, depth=512, num_units=3),
         ]
     else:
         raise ValueError("Invalid number of layers: {}. Must be one of [50, 100, 152]".format(num_layers))
@@ -79,14 +80,13 @@ class bottleneck_IR(Module):
         if in_channel == depth:
             self.shortcut_layer = MaxPool2d(1, stride)
         else:
-            self.shortcut_layer = Sequential(
-                Conv2d(in_channel, depth, (1, 1), stride, bias=False),
-                BatchNorm2d(depth)
-            )
+            self.shortcut_layer = Sequential(Conv2d(in_channel, depth, (1, 1), stride, bias=False), BatchNorm2d(depth))
         self.res_layer = Sequential(
             BatchNorm2d(in_channel),
-            Conv2d(in_channel, depth, (3, 3), (1, 1), 1, bias=False), PReLU(depth),
-            Conv2d(depth, depth, (3, 3), stride, 1, bias=False), BatchNorm2d(depth)
+            Conv2d(in_channel, depth, (3, 3), (1, 1), 1, bias=False),
+            PReLU(depth),
+            Conv2d(depth, depth, (3, 3), stride, 1, bias=False),
+            BatchNorm2d(depth),
         )
 
     def forward(self, x):
@@ -101,20 +101,20 @@ class bottleneck_IR_SE(Module):
         if in_channel == depth:
             self.shortcut_layer = MaxPool2d(1, stride)
         else:
-            self.shortcut_layer = Sequential(
-                Conv2d(in_channel, depth, (1, 1), stride, bias=False),
-                BatchNorm2d(depth)
-            )
+            self.shortcut_layer = Sequential(Conv2d(in_channel, depth, (1, 1), stride, bias=False), BatchNorm2d(depth))
         self.res_layer = Sequential(
             BatchNorm2d(in_channel),
             Conv2d(in_channel, depth, (3, 3), (1, 1), 1, bias=False),
             PReLU(depth),
             Conv2d(depth, depth, (3, 3), stride, 1, bias=False),
             BatchNorm2d(depth),
-            SEModule(depth, 16)
+            SEModule(depth, 16),
         )
 
     def forward(self, x):
+        import pdb
+
+        pdb.set_trace()
         shortcut = self.shortcut_layer(x)
         res = self.res_layer(x)
         return res + shortcut
@@ -137,4 +137,4 @@ def _upsample_add(x, y):
     So we choose bilinear upsample which supports arbitrary output sizes.
     """
     _, _, H, W = y.size()
-    return F.interpolate(x, size=(H, W), mode='bilinear', align_corners=True) + y
+    return F.interpolate(x, size=(H, W), mode="bilinear", align_corners=True) + y
