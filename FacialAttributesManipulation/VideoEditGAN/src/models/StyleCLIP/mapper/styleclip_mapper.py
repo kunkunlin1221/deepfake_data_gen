@@ -39,6 +39,8 @@ class StyleCLIPMapper(nn.Module):
     def load_weights(self):
         if self.opts.checkpoint_path is not None:
             # print('Loading from checkpoint: {}'.format(self.opts.checkpoint_path))
+            # import pdb
+            # pdb.set_trace()
             ckpt = torch.load(self.opts.checkpoint_path, map_location='cpu')
             self.mapper.load_state_dict(get_keys(ckpt, 'mapper'), strict=True)
 

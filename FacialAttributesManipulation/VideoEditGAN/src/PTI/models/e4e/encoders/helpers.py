@@ -112,9 +112,6 @@ class bottleneck_IR_SE(Module):
         )
 
     def forward(self, x):
-        import pdb
-
-        pdb.set_trace()
         shortcut = self.shortcut_layer(x)
         res = self.res_layer(x)
         return res + shortcut

@@ -56,8 +56,8 @@ sh ./build.sh
 We provide a code snippet `single_video_smooth.py` to generate facial landmarks for the alignment. Run
 
 ```
-cp ../scrpits/single_video_smooth.py ./
-python single_video_smooth.py -f out/aamir_khan/frames
+cp ../scripts/single_video_smooth.py ./
+python single_video_smooth.py -f ../out/aamir_khan/frames
 ```
 
 The `landmarks.npy` will be saved at `path-to-video/../landmarks/landmarks.npy`.

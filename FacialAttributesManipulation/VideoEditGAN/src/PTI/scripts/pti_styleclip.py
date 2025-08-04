@@ -10,6 +10,7 @@ sys.path.append("..")
 
 import numpy as np
 import torch
+from pathlib import Path
 from tqdm import tqdm
 
 from configs import paths_config
@@ -56,7 +57,7 @@ def styleclip_edit(frame_path, use_multi_id_G, inverted_root, run_name, output_d
     pretrained_mappers = paths_config.style_clip_pretrained_mappers
 
     images_dir = frame_path
-    
+
     images = sorted(glob.glob(f"{images_dir}/*.jpeg") + glob.glob(f"{images_dir}/*.jpg") + glob.glob(f"{images_dir}/*.png"))
 
     model_path = os.path.join(inverted_root, 'model_multi_id.pt')
@@ -68,12 +69,12 @@ def styleclip_edit(frame_path, use_multi_id_G, inverted_root, run_name, output_d
 
         if not os.path.exists(os.path.join(output_dir, 'StyleCLIP', edit_type, 'latents.pth')) or force:
             for image_name in tqdm(images):
-                image_name = image_name.split(".")[0].split("/")[-1]
+                image_name = Path(image_name).stem
 
                 embedding_dir = os.path.join(inverted_root, 'embeddings', run_name, paths_config.pti_results_keyword, image_name)  # debugging: hard-coding
-                                
+
                 latent_path = f'{embedding_dir}/0.pt'
-            
+
                 args = {
                     "exp_dir": os.path.join(output_dir, 'StyleCLIP'),
                     "checkpoint_path": f"{pretrained_mappers}/{edit_id}.pt",
@@ -92,12 +93,12 @@ def styleclip_edit(frame_path, use_multi_id_G, inverted_root, run_name, output_d
                     # "data_dir_name": data_dir_name
                 }
                 factor = meta_data[edit_type][4]
-                latent_code = run_(Namespace(**args), 
+                latent_code = run_(Namespace(**args),
                                 model_path, image_name, use_multi_id_G, factor)
                 latent_codes.append(latent_code)
             latent_codes = torch.stack(latent_codes)
             torch.save(latent_codes, os.path.join(output_dir, 'StyleCLIP', edit_type, 'latents.pth'))
-            
+
 
 if __name__ == '__main__':
     import argparse
@@ -108,7 +109,7 @@ if __name__ == '__main__':
     parser.add_argument("--aligned_frame_path", type=str, required=True)
     parser.add_argument("--run_name", type=str, required=True)
     parser.add_argument(
-        "--use_multi_id_G", action='store_true', 
+        "--use_multi_id_G", action='store_true',
     )
     parser.add_argument(
         "--output_root", type=str, required=True,
@@ -118,6 +119,6 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
 
-   
-    styleclip_edit(frame_path=args.aligned_frame_path, use_multi_id_G=args.use_multi_id_G, inverted_root=args.inverted_root, run_name=args.run_name, 
-                    output_dir=args.output_root, force=args.force) 
+
+    styleclip_edit(frame_path=args.aligned_frame_path, use_multi_id_G=args.use_multi_id_G, inverted_root=args.inverted_root, run_name=args.run_name,
+                    output_dir=args.output_root, force=args.force)

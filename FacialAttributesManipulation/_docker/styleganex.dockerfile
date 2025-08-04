@@ -25,9 +25,8 @@ RUN curl -fSsL --insecure ${CONDA_URL} -o install-conda.sh &&\
 
 ENV PATH=$MINICONDA_PREFIX/bin:${PATH}
 
-RUN conda install wheel pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
-RUN pip install matplotlib==3.3.4 Pillow==8.3.1 opencv-python==4.5.3.56 \
-	tqdm==4.61.2 ninja==1.10.2 dlib==19.24.0 gradio==3.0.12
+RUN pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install matplotlib==3.3.4 Pillow==8.3.1 opencv-python==4.5.3.56 tqdm==4.61.2 ninja==1.10.2 dlib==19.24.0 gradio==3.0.12
 
 WORKDIR /code
 CMD bash

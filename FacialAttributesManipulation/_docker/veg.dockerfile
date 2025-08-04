@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:experimental
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as builder
+FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu20.04 as builder
 
 ENV PYTHONDONTWRITEBYTECODE=1\
 	DEBIAN_FRONTEND=noninteractive\
@@ -30,11 +30,6 @@ ENV PATH=$MINICONDA_PREFIX/bin:${PATH}
 COPY veg_requirements.txt /tmp/veg_requirements.txt
 RUN pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 RUN pip install -r /tmp/veg_requirements.txt
-
-# Clone and build the project (inside the activated env)
-RUN git clone https://github.com/cleardusk/3DDFA_V2.git && \
-	cd 3DDFA_V2 && \
-	sh ./build.sh
 
 # RUN echo "export TORCH_CUDA_ARCH_LIST=8.0" > ~/.bashrc
 
