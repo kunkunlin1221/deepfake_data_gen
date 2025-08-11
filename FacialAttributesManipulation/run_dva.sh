@@ -1,4 +1,4 @@
-export CMD="python run.py $1 $2"
+export CMD="python run.py --src_folder $1 --dst_folder $2"
 # echo $CMD
 # docker run \
 #     --gpus all \
