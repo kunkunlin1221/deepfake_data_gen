@@ -2,7 +2,9 @@
 # The code is from editing_classifier.py and is designed to run in a Docker container.
 import math
 import os
+import random
 from pathlib import Path
+from shutil import rmtree
 
 import dlib
 import ffmpeg
@@ -16,7 +18,6 @@ from scipy.ndimage import gaussian_filter, gaussian_filter1d
 from torch.utils.data import DataLoader
 from torchvision.utils import save_image
 from tqdm import tqdm
-import random
 
 if True:
     import sys
@@ -207,6 +208,7 @@ def video_to_pngs(video_path: str, frame_folder: str):
 cur_folder = Path(__file__).parent
 
 
+@torch.no_grad()
 def edit_video(
     src_video: str,
     dst_video: str,
@@ -226,6 +228,8 @@ def edit_video(
     # preparation
     src_video = Path(src_video)
     frame_folder = Path("tmp/sample_video")
+    if frame_folder.exists():
+        rmtree(frame_folder)
     video_to_pngs(src_video, frame_folder)
 
     # load the diffusion model
@@ -233,8 +237,7 @@ def edit_video(
     state = torch.load(dif_ckpt_path, map_location="cpu")
     model = LitModel(conf)
     model.load_state_dict(state["state_dict"], strict=False)
-    model.ema_model.eval()
-    model.ema_model.to(device)
+    model.ema_model.to(device).eval()
 
     # load the classifier
     cls_conf = diffusion_video_autoencoder_cls(gpus)
@@ -242,11 +245,14 @@ def edit_video(
     state = torch.load(cls_ckpt_path, map_location="cpu")
     print("latent step:", state["global_step"])
     cls_model.load_state_dict(state["state_dict"], strict=False)
-    cls_model.to(device)
+    cls_model.to(device).eval()
     # print(CelebAttrDataset.id_to_cls)
 
     # create log directory
     log_dir = Path("editing_classifier") / src_video.stem
+    if log_dir.exists():
+        rmtree(log_dir)
+
     crop_dir = log_dir / "crop"
     recon_dir = log_dir / "recon"
     if not log_dir.exists():
@@ -260,18 +266,23 @@ def edit_video(
     predictor = dlib.shape_predictor("pretrained_models/shape_predictor_68_face_landmarks.dat")
     detector = dlib.get_frontal_face_detector()
 
-    images = []
+    raw_images = []
     for fname in sorted(os.listdir(frame_folder)):
         path = os.path.join(frame_folder, fname)
         fname = fname.split(".")[0]
-        images.append((fname, path))
+        raw_images.append((fname, path))
 
-    cs, xs, ys = [], [], []
-    for _, path in images:
-        c, x, y = compute_transform(path, predictor, detector=detector, scale=1.0)
-        cs.append(c)
-        xs.append(x)
-        ys.append(y)
+    cs, xs, ys, images = [], [], [], []
+    for fname, path in raw_images:
+        try:
+            c, x, y = compute_transform(path, predictor, detector=detector, scale=1.0)
+            cs.append(c)
+            xs.append(x)
+            ys.append(y)
+            images.append((fname, path))
+        except Exception as e:
+            print(f"Error processing {path}: {e}")
+            continue
     cs = np.stack(cs)
     xs = np.stack(xs)
     ys = np.stack(ys)
@@ -305,10 +316,10 @@ def edit_video(
 
     conds = []
     for batch in tqdm(dataloader, desc="Forward cond"):
-        imgs = batch["img"]
+        imgs = batch["img"].to(device, dtype=torch.float32)
         indices = batch["index"]
 
-        cond = model.ema_model.encoder.id_forward(imgs.to(device))
+        cond = model.ema_model.encoder.id_forward(imgs)
         conds.append(cond)
 
     cond = torch.cat(conds, dim=0)
@@ -318,15 +329,14 @@ def edit_video(
     if normalize:
         avg_cond_norm = cls_model.normalize(avg_cond)
 
-    for batch in tqdm(dataloader, desc="Compute reconstructions"):
-        imgs = batch["img"]
+    for batch in tqdm(dataloader, desc="Compute reconstructions", unit_scale=batch_size, total=len(dataloader)):
+        imgs = batch["img"].to(device, dtype=torch.float32)
         indices = batch["index"]
 
-        with torch.no_grad():
-            avg_latent = model.ema_model.encoder.forward_with_id(avg_cond.expand(len(imgs), -1), imgs.to(device))
-            avg_xT = model.encode_stochastic(imgs.to(device), avg_latent, T=T)
-            mask = model.ema_model.encoder.face_mask(imgs.to(device), for_video=True)
-            avg_img_recon = model.render(avg_xT, avg_latent, T=T)
+        avg_latent = model.ema_model.encoder.forward_with_id(avg_cond.expand(len(imgs), -1), imgs)
+        avg_xT = model.encode_stochastic(imgs, avg_latent, T=T)
+        mask = model.ema_model.encoder.face_mask(imgs, for_video=True)
+        avg_img_recon = model.render(avg_xT, avg_latent, T=T)
 
         ori = (imgs + 1) / 2
         for index in range(len(imgs)):
@@ -347,14 +357,14 @@ def edit_video(
         if not os.path.exists(f"{log_dir}/{attribute}_{scale:.2f}"):
             os.mkdir(f"{log_dir}/{attribute}_{scale:.2f}")
 
-        avg_latent2 = model.ema_model.encoder.forward_with_id(avg_cond2.expand(len(imgs), -1), imgs.to(device))
+        avg_latent2 = model.ema_model.encoder.forward_with_id(avg_cond2.expand(len(imgs), -1), imgs)
         avg_img = model.render(avg_xT, avg_latent2, T=T)
 
         for index in range(len(imgs)):
             file_name = data.paths[indices[index]]
             # save_image(avg_img[index], f'{log_dir}/{attribute}_{scale:.2f}/avg_mani_{file_name}')
             paste_bg = avg_img[index].unsqueeze(0) * mask[index].unsqueeze(0) + (
-                (imgs[index].to(device).unsqueeze(0) + 1) / 2 * (1 - mask[index].unsqueeze(0))
+                (imgs[index].unsqueeze(0) + 1) / 2 * (1 - mask[index].unsqueeze(0))
             )
             save_image(paste_bg[0], f"{log_dir}/{attribute}_{scale:.2f}/paste_avg_mani_{file_name}")
             paste_bg_crop = tensor2pil((paste_bg[0] * 2) - 1)
@@ -365,38 +375,74 @@ def edit_video(
             video_frames.append(paste_bg_pasted_image)
             paste_bg_pasted_image.save(f"{log_dir}/{attribute}_{scale:.2f}/paste_final_avg_mani_{file_name}")
 
-        imageio.mimwrite(
-            str(dst_video),
-            video_frames,
-            fps=20,
-            output_params=["-vf", "fps=20"],
-        )
+    imageio.mimwrite(str(dst_video), video_frames, fps=20, codec="libx264", quality=8)
 
 
-def edit_videos(
-    src_folder: str,
-    dst_folder: str,
-):
+def edit_videos(src_folder: str, dst_folder: str):
     src_folder = Path(src_folder)
     dst_folder = Path(dst_folder)
     if not dst_folder.exists():
         dst_folder.mkdir(parents=True, exist_ok=True)
 
-    attributes = ['5_o_Clock_Shadow', 'Arched_Eyebrows', 'Attractive', 'Bags_Under_Eyes', 'Bald', 'Bangs', 'Big_Lips', 'Big_Nose', 'Black_Hair', 'Blond_Hair', 'Blurry', 'Brown_Hair', 'Bushy_Eyebrows', 'Chubby', 'Double_Chin', 'Eyeglasses', 'Goatee', 'Gray_Hair', 'Heavy_Makeup', 'High_Cheekbones', 'Male', 'Mouth_Slightly_Open', 'Mustache', 'Narrow_Eyes', 'No_Beard', 'Oval_Face', 'Pale_Skin', 'Pointy_Nose', 'Receding_Hairline', 'Rosy_Cheeks', 'Sideburns', 'Smiling', 'Straight_Hair', 'Wavy_Hair', 'Wearing_Earrings', 'Wearing_Hat', 'Wearing_Lipstick', 'Wearing_Necklace', 'Wearing_Necktie', 'Young']
-
-    for src_video in src_folder.glob("*.mp4"):
-        attribute = random.choice(attributes)
+    attributes = [
+        "5_o_Clock_Shadow",
+        "Arched_Eyebrows",
+        "Attractive",
+        "Bags_Under_Eyes",
+        "Bald",
+        "Bangs",
+        "Big_Lips",
+        "Big_Nose",
+        "Black_Hair",
+        "Blond_Hair",
+        "Blurry",
+        "Brown_Hair",
+        "Bushy_Eyebrows",
+        "Chubby",
+        "Double_Chin",
+        "Eyeglasses",
+        "Goatee",
+        "Gray_Hair",
+        "Heavy_Makeup",
+        "High_Cheekbones",
+        "Male",
+        "Mouth_Slightly_Open",
+        "Mustache",
+        "Narrow_Eyes",
+        "No_Beard",
+        "Oval_Face",
+        "Pale_Skin",
+        "Pointy_Nose",
+        "Receding_Hairline",
+        "Rosy_Cheeks",
+        "Sideburns",
+        "Smiling",
+        "Straight_Hair",
+        "Wavy_Hair",
+        "Wearing_Earrings",
+        "Wearing_Hat",
+        "Wearing_Lipstick",
+        "Wearing_Necklace",
+        "Wearing_Necktie",
+        "Young",
+    ]
+    src_videos = src_folder.glob("*.mp4")
+    for i, src_video in enumerate(src_videos):
+        attribute = attributes[i % len(attributes)]
         dst_video = dst_folder / (src_video.stem + f"_{attribute}.mp4")
+        print(dst_video)
         edit_video(
             src_video=str(src_video),
             dst_video=str(dst_video),
             batch_size=8,
             T=500,
-            max_num=None,
+            max_num=40,
             attribute=attribute,
             scale=0.25,
             normalize=True,
         )
 
+
 if __name__ == "__main__":
+    random.seed(42)
     Fire(edit_videos)

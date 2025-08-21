@@ -1,24 +1,20 @@
-export CMD="python run.py --src_folder $1 --dst_folder $2"
-# echo $CMD
-# docker run \
-#     --gpus all \
-#     --shm-size=32g \
-#     --ulimit memlock=-1 \
-#     --ulimit stack=67108864 \
-#     --ipc=host \
-#     --net=host \
-#     -v $HOME/.cache:/root/.cache \
-#     -v $(pwd)/Diffusion-Video-Autoencoders:/code \
-#     -it --rm dva bash
-
 docker run \
     --gpus all \
-    --shm-size=32g \
-    --ulimit memlock=-1 \
-    --ulimit stack=67108864 \
-    --ipc=host \
-    --net=host \
     -v $HOME/.cache:/root/.cache \
     -v $(pwd)/Diffusion-Video-Autoencoders:/code \
     -v /data:/data \
-    -it --rm dva bash -c "$CMD"
+    -it --rm dva python run.py --src_folder /data/disk1/deepfake_gen/FacialAttributeManipulation/VFHQ/real_data --dst_folder /data/disk1/deepfake_gen/FacialAttributeManipulation/VFHQ/dva
+
+docker run \
+    --gpus all \
+    -v $HOME/.cache:/root/.cache \
+    -v $(pwd)/Diffusion-Video-Autoencoders:/code \
+    -v /data:/data \
+    -it --rm dva python run.py --src_folder /data/disk1/deepfake_gen/FacialAttributeManipulation/CelebV-Text/real_data --dst_folder /data/disk1/deepfake_gen/FacialAttributeManipulation/CelebV-Text/dva
+
+docker run \
+    --gpus all \
+    -v $HOME/.cache:/root/.cache \
+    -v $(pwd)/Diffusion-Video-Autoencoders:/code \
+    -v /data:/data \
+    -it --rm dva python run.py --src_folder /data/disk1/deepfake_gen/FacialAttributeManipulation/HDTF/real_data --dst_folder /data/disk1/deepfake_gen/FacialAttributeManipulation/HDTF/dva
